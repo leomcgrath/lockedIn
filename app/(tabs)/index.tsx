@@ -1,4 +1,5 @@
-import { Image, FlatList, StyleSheet } from 'react-native';
+import { Image, FlatList, StyleSheet, Pressable } from 'react-native';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useEffect, useState } from 'react';
 
 import { supabase } from '@/lib/supabase';
@@ -32,9 +33,12 @@ export default function TabOneScreen() {
     <View style={styles.post}>
       <Text style={styles.user}>{item.user}</Text>
       <Image source={{ uri: item.image }} style={styles.image} />
+      <View style={styles.actions}>
+        <Pressable>
+          <FontAwesome name="heart-o" size={24} color="#ff3333" />
+        </Pressable>
+      </View>
       <Text style={styles.caption}>{item.caption}</Text>
-      <Text style={styles.bio}>{item.bio}</Text>
-      <Text style={styles.url}>{item.url}</Text>
     </View>
   );
 
@@ -70,14 +74,9 @@ const styles = StyleSheet.create({
     margin: 8,
     fontSize: 14,
   },
-  bio: {
-    marginHorizontal: 8,
-    fontSize: 12,
-    color: '#666',
-  },
-  url: {
-    marginHorizontal: 8,
-    fontSize: 12,
-    color: '#1e90ff',
+  actions: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+    paddingVertical: 12,
   },
 });
